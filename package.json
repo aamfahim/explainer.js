@@ -1,0 +1,19 @@
+{
+  "name": "explainer.js",
+  "version": "0.0.1",
+  "description": "CLI tool to help you explain codes in a file",
+  "main": "index.js",
+  "scripts": {
+    "test": "npm run test"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/aamfahim/explainer.js.git"
+  },
+  "author": "aamfahim",
+  "license": "MIT",
+  "bugs": {
+    "url": "https://github.com/aamfahim/explainer.js/issues"
+  },
+  "homepage": "https://github.com/aamfahim/explainer.js#readme"
+}
