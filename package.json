@@ -17,6 +17,7 @@
   },
   "homepage": "https://github.com/aamfahim/explainer.js#readme",
   "dependencies": {
-    "commander": "^12.1.0"
+    "commander": "^12.1.0",
+    "ollama": "^0.5.8"
   }
 }
