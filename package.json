@@ -15,5 +15,8 @@
   "bugs": {
     "url": "https://github.com/aamfahim/explainer.js/issues"
   },
-  "homepage": "https://github.com/aamfahim/explainer.js#readme"
+  "homepage": "https://github.com/aamfahim/explainer.js#readme",
+  "dependencies": {
+    "commander": "^12.1.0"
+  }
 }
