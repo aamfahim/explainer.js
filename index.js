@@ -3,7 +3,7 @@ import 'dotenv/config';
 import Groq from "groq-sdk"
 import { Command } from "commander";
 
-import packageJSON from './package.json' assert { type: 'json' };
+const packageJSON = JSON.parse(fs.readFileSync('./package.json'));
 const program = new Command();
 
 
