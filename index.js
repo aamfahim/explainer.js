@@ -5,8 +5,10 @@ import { Command } from "commander";
 
 const program = new Command();
 
+import packageJSON from './package.json' assert { type: 'json' };
+
 program
-  .version('1.0.0')
+  .version(packageJSON.version)
   .description('CLI tool to process a file, pass it to Ollama, and output the code blocks with comments')
   .argument('<file>', 'file to process')
   .action(async (file) => {
