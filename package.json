@@ -3,6 +3,7 @@
   "version": "0.0.1",
   "description": "CLI tool to help you explain codes in a file",
   "main": "index.js",
+  "type": "module",
   "scripts": {
     "test": "npm run test"
   },
