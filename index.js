@@ -1,8 +1,10 @@
-import { Command } from "commander";
 import fs from 'fs';
+import 'dotenv/config';
 import Groq from "groq-sdk"
+import { Command } from "commander";
+
 const program = new Command();
-import 'dotenv/config'
+
 program
   .version('1.0.0')
   .description('CLI tool to process a file, pass it to Ollama, and output the code blocks with comments')
