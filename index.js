@@ -3,13 +3,13 @@ import 'dotenv/config';
 import Groq from "groq-sdk"
 import { Command } from "commander";
 
+import packageJSON from './package.json' assert { type: 'json' };
 const program = new Command();
 
-import packageJSON from './package.json' assert { type: 'json' };
 
 program
-  .version(packageJSON.version)
-  .description('CLI tool to process a file, pass it to Ollama, and output the code blocks with comments')
+  .version(packageJSON.version, '-v, --version', 'output the current version')
+  .description('CLI tool to process a file output the code blocks with comments')
   .argument('<file>', 'file to process')
   .action(async (file) => {
     try {
