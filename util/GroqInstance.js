@@ -6,11 +6,12 @@
  * @throws {Error} - If apiKey or baseURL are missing or not defined properly.
  */
 import Groq from "groq-sdk";
-import ArgsChecker from "../ArgsChecker";
+import ArgsChecker from "./ArgsChecker.js";
 
-export default GroqInstance = (apiKey, baseURL) => {
-    if (!ArgsChecker(arguments, 2)) {
-        throw new Error(`${arguments.toString()} missing or values are not defined properly`);
+const GroqInstance = (apiKey, baseURL) => {
+    if (!ArgsChecker([apiKey, baseURL], 2)) {
+        console.log(apiKey, baseURL);
+        throw new Error(`apiKey & baseURL are missing or values are not defined properly`);
     }    
 
     return new Groq({
@@ -18,3 +19,5 @@ export default GroqInstance = (apiKey, baseURL) => {
         baseURL: baseURL,
     });
 }
+
+export default GroqInstance;
