@@ -10,7 +10,7 @@ import ArgsChecker from "../ArgsChecker";
 
 export default GroqInstance = (apiKey, baseURL) => {
     if (!ArgsChecker(arguments, 2)) {
-        throw new Error('apiKey and baseURL are missing or values are not defined properly');
+        throw new Error(`${arguments.toString()} missing or values are not defined properly`);
     }    
 
     return new Groq({
