@@ -28,10 +28,8 @@ program.argument('<./file_path>', 'path of the file to process')
   .action(async (file, options) => {
     try {
       if (fs.existsSync(file)) {
-        const GROQ = GroqInstance(options.apiKey, options.baseURL);
-        const validPrompt = Prompt(fs.readFileSync(file, 'utf8'));
-        const response = await ProcessFileWithProvider(GROQ,
-                                                       validPrompt,
+        const response = await ProcessFileWithProvider(GroqInstance(options.apiKey, options.baseURL),
+                                                       Prompt(fs.readFileSync(file, 'utf8')),
                                                        options.model,
                                                        TemperatureChecker(options.temperature));
 
