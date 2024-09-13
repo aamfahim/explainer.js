@@ -1,3 +1,4 @@
+import fs from 'fs';
 import 'dotenv/config';
 import { Command, Option } from "commander";
 import GroqInstance from './util/GroqInstance.js';
