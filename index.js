@@ -1,8 +1,7 @@
-import fs from 'fs';
 import 'dotenv/config';
 import { Command, Option } from "commander";
 import GroqInstance from './util/GroqInstance.js';
-import Prompt from './util/Prompt.js';
+import BuildFilePrompt from './util/BuildFilePrompt.js';
 import ProcessFileWithProvider from './util/ProcessFileWithProvider.js';
 import TemperatureChecker from './util/TemperatureChecker.js';
 
@@ -27,21 +26,16 @@ program
 program.argument('<./file_path>', 'path of the file to process')
   .action(async (file, options) => {
     try {
-      if (fs.existsSync(file)) {
-        const response = await ProcessFileWithProvider(GroqInstance(options.apiKey, options.baseURL),
-                                                       Prompt(fs.readFileSync(file, 'utf8')),
-                                                       options.model,
-                                                       TemperatureChecker(options.temperature));
+      const response = await ProcessFileWithProvider(GroqInstance(options.apiKey, options.baseURL),
+                                                     BuildFilePrompt(file),
+                                                     options.model,
+                                                     TemperatureChecker(options.temperature));
 
-        if(response.choices[0].message.content){
-          console.log(response.choices[0].message.content)
-        }
-        else{
-          console.log('No explanation returned by provider.');
-        }
+      if(response.choices[0].message.content){
+        console.log(response.choices[0].message.content)
       }
       else{
-        console.error(`File ${file} not found!`)
+        console.log('No explanation returned by provider.');
       }
     } catch (error) {
       console.error(`Error: ${error.message}`);
