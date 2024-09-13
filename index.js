@@ -33,7 +33,12 @@ program.argument('<./file_path>', 'path of the file to process')
                                                      TemperatureChecker(options.temperature));
 
       if(response.choices[0].message.content){
-        console.log(response.choices[0].message.content)
+        if(options.output){
+          fs.writeFileSync(options.output, response.choices[0].message.content);
+          console.log(`File saved to ${options.output}`);
+        }else{
+          console.log(response.choices[0].message.content)
+        }
       }
       else{
         console.log('No explanation returned by provider.');
