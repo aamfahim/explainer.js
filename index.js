@@ -12,7 +12,7 @@ const program = new Command();
 
 program
   .version(packageJSON.version, '-v, --version', 'output the current version')
-  .description('CLI tool to process a file output the code blocks with comments')
+  .description(packageJSON.description)
 
 program
   .addOption(new Option('-a, --api-key <your-key>', 'define API key to use for processing defined in .env file').env('API_KEY').makeOptionMandatory())
