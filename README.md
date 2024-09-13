@@ -2,7 +2,10 @@
 
 CLI tool to processes a file and output the code blocks along with explanation, using various configuration options like API key, base URL, model name, and temperature.
 
+Built using [Commander.js](https://www.npmjs.com/package/commander) and [Groq SDK](https://console.groq.com/docs/libraries)!
+
 ## Features
+If you are going to be defining custom Base URL and/or Model refer to [Groq Documentation](https://console.groq.com/docs/quickstart).
 
 - **API Key Handling**: Uses an API key from the `.env` file or passed as a command-line argument.
 - **Base URL**: Allows the specification of a base URL for the API.
