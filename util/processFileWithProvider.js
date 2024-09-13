@@ -14,7 +14,7 @@ const processFileWithProvider = async (provider, prompt, model, temperature) => 
     if (!ArgsChecker([provider, prompt, model, temperature], 4)) {
         throw new Error(`provider, prompt, model, temperature are missing or values are not defined properly`);
     }
-
+    console.log('Processing request with provider...');
     try {
         const response = await provider.chat.completions.create({
             messages: [{ role: "user", content: prompt }],
