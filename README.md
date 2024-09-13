@@ -1,44 +1,90 @@
+# Explainer.js
 
-## Description
+CLI tool to processes a file and output the code blocks along with explanation, using various configuration options like API key, base URL, model name, and temperature.
 
-`explainer.js` is a command-line interface (CLI) tool designed to process code files and output the code blocks with explanations as comments. This tool utilizes a Groq-based API to provide detailed explanations of the code structure, functionality, and logic.
+## Features
+
+- **API Key Handling**: Uses an API key from the `.env` file or passed as a command-line argument.
+- **Base URL**: Allows the specification of a base URL for the API.
+  - Refer to documentation of appropriate provider. File a issue if not supported.
+- **Model Selection**: Allows the selection of different models for processing.
+  - When choosing a model ensure you are choosing appropriate model for code analysis for expected output. If not sure stick to default model.
+- **Output to File**: Supports outputting the result to a file with a valid extension.
+  - When passing output file name, ensure it has a text readable extension such as `.txt` or `.md`. Otherwise output will not be accessible.
+- **Temperature Control**: Adjust the temperature of the model response, allowing for more or less creativity in the output. Valid temperature is between 0 to 2.
+  - Higher the temperature longer the process time.
+
+## Prerequisites
+
+- Have latest stable(LTS) version of [node.js](https://nodejs.org/en) installed.
+- Optional: A valid `.env` file with API credentials with all typed out.
 
 ## Installation
 
-Before using the tool, ensure you have Node.js installed. You can then install dependencies by running:
+1. Clone the repository.
 
-```bash
-npm install
-```
+   ```bash
+   git clone <repository-url>
+   ```
 
-## Setup Environment Variables
+   ```bash
+   cd <repository-directory>
+   ```
 
-Create a `.env` file in the root directory of your project with the following variables:
+2. Install dependencies.
 
-```bash
-API_KEY=your-api-key-here
-```
+   ```bash
+   npm install
+   ```
 
-The `.env` file allows you to configure API keys and other options for the tool.
+3. Set up your `.env` file with your API key and base URL.
 
-## Usage
-
-To use the tool, run the following command:
-
-```bash
-node index.js <file> [options]
-```
+   ```.env
+   API_KEY=your-api-key
+   ```
 
 ## Options
 
-- `-a, --api-key [your-key]`: Defines the API key to use for processing (can also be set in the `.env` file). **Required**.
-- `-b, --baseURL [url]`: Defines the base URL of the API for processing. Defaults to `https://api.groq.com/`.
-- `-m, --model [model-name]`: Defines the model to use for processing. Defaults to `llama-3.1-70b-versatile`.
-- `-o, --output [file.type]`: Defines the output file for the processed content. Defaults to `explainer_output.txt`.
-- `-t, --temperature [number]`: Defines the temperature parameter for generating explanations (range between 0 and 2). Defaults to `1`.
+- `-a, --api-key <your-key>`: **(Required)** The API key used for processing. Can be set via the `.env` file (`API_KEY`) or passed as a command-line argument.
+- `-b, --baseURL <url>`: The base URL for the API. Default: `https://api.groq.com/`.
+- `-m, --model <model-name>`: The model name to use for processing. Default: `llama-3.1-70b-versatile`.
+- `-o, --output <file>`: The output file path where the results will be saved.
+- `-t, --temperature <number>`: The temperature for the model, ranging from 0 to 2. Default: `1`.
+- `-h, --help`: Display the help message for user.
+- `-v, --version`: Display the current version of the tool.
 
-## Example
+## Arguments
+
+- `<file-path>`: **(Required)** The path to the file you want explanation for.
+
+## Usage
+
+You can use the CLI to process a file and either print the output to the console or save it to a specified file.
+
+You can run this following command to get information regarding the tool in the terminal.
 
 ```bash
-node explainer.js myCodeFile.js -a your-api-key -o explainedFile.js -t 0.7
+node index.js -h
 ```
+
+\
+If you prefer to do it in the terminal:
+
+```bash
+node index.js -a <your-api-key> -b <base-url> -m <model-name> -o <output-file> -t <number> <file-path>
+```
+
+```bash
+node index.js ---api-key <your-api-key> -baseURL <base-url> --model <model-name> --output <output-file> ----temperature <number> <file-path>
+```
+
+\
+Or if you have your API_KEY defined in `.env` you can just run the following:
+
+```bash
+node index.js examples/bubble_sort.js
+```
+
+## Version
+
+This tool outputs the current version of the package from `package.json` when you pass the `-v` or `--version` flag.
