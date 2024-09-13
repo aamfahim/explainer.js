@@ -2,8 +2,9 @@ import fs from 'fs';
 import 'dotenv/config';
 import { Command, Option } from "commander";
 import GroqInstance from './util/GroqInstance.js';
-import prompt from './util/Prompt.js';
-import processFileWithProvider from './util/processFileWithProvider.js';
+import Prompt from './util/Prompt.js';
+import ProcessFileWithProvider from './util/ProcessFileWithProvider.js';
+import TemperatureChecker from './util/TemperatureChecker.js';
 
 const packageJSON = JSON.parse(fs.readFileSync('./package.json'));
 const program = new Command();
@@ -18,7 +19,7 @@ program
   .addOption(new Option('-b, --baseURL [url]', 'define the base URL to use for processing defined in .env file').default('https://api.groq.com/').env('BASE_URL'))
   .addOption(new Option('-m, --model [model-name]',  'define the model to use for processing').default('llama-3.1-70b-versatile').env('MODEL_NAME'))
   .addOption(new Option('-o, --output [file.type]', 'define an output file').default('explainer_output.txt'))
-  .addOption(new Option('-t, --temperature [number]', 'define temperature of chat completion between 0 to 2').default(1))
+  .addOption(new Option('-t, --temperature [number]', 'define temperature of chat completion between 0 to 2').default(1).argParser(parseFloat))
   
 
 
@@ -28,11 +29,11 @@ program.argument('<file>', 'file to process')
     try {
       if (fs.existsSync(file)) {
         const GROQ = GroqInstance(options.apiKey, options.baseURL);
-        const validPrompt = prompt(fs.readFileSync(file, 'utf8'));
-        const response = await processFileWithProvider(GROQ,
+        const validPrompt = Prompt(fs.readFileSync(file, 'utf8'));
+        const response = await ProcessFileWithProvider(GROQ,
                                                        validPrompt,
                                                        options.model,
-                                                       options.temperature);
+                                                       TemperatureChecker(options.temperature));
 
         if(response.choices[0].message.content){
           console.log(response.choices[0].message.content)
