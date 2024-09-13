@@ -24,7 +24,7 @@ program
 
 
   
-program.argument('<file>', 'file to process')
+program.argument('<./file_path>', 'path of the file to process')
   .action(async (file, options) => {
     try {
       if (fs.existsSync(file)) {
