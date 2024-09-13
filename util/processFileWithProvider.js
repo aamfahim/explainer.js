@@ -1,3 +1,5 @@
+import ArgsChecker from "./ArgsChecker.js";
+
 /**
  * Process a file with a given provider.
  * 
@@ -8,8 +10,6 @@
  * @returns {Promise<Object>} - The response from the provider.
  * @throws {Error} - If any of the required arguments are missing or not defined properly, or if provider processing fails.
  */
-import ArgsChecker from "./ArgsChecker.js";
-
 const processFileWithProvider = async (provider, prompt, model, temperature) => {
     if (!ArgsChecker([provider, prompt, model, temperature], 4)) {
         throw new Error(`provider, prompt, model, temperature are missing or values are not defined properly`);
