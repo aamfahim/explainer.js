@@ -1,7 +1,7 @@
 {
   "name": "explainer.js",
   "version": "0.0.1",
-  "description": "CLI tool to help you explain codes in a file",
+  "description": "CLI tool to processes a file and output the code blocks along with explanation",
   "main": "index.js",
   "type": "module",
   "scripts": {
