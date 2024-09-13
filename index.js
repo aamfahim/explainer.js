@@ -18,7 +18,7 @@ program
   .addOption(new Option('-a, --api-key <your-key>', 'define API key to use for processing defined in .env file').env('API_KEY').makeOptionMandatory())
   .addOption(new Option('-b, --baseURL <url>', 'define the base URL to use for processing defined in .env file').default('https://api.groq.com/').env('BASE_URL'))
   .addOption(new Option('-m, --model <model-name>',  'define the model to use for processing').default('llama-3.1-70b-versatile').env('MODEL_NAME'))
-  .addOption(new Option('-o, --output <file>', 'define an output file'))
+  .addOption(new Option('-o, --output <file>', 'define an output file with valid extension to be able access the output'))
   .addOption(new Option('-t, --temperature <number>', 'define temperature of chat completion between 0 to 2').default(1).argParser(parseFloat))
   
 
