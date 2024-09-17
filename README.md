@@ -1,8 +1,11 @@
 # Explainer.js
 
-CLI tool to processes a file and output the code blocks along with explanation, using various configuration options like API key, base URL, model name, and temperature.
+CLI tool to process files and output the code blocks along with explanation, using various configuration options like API key, base URL, model name, and temperature.
 
 Built using [Commander.js](https://www.npmjs.com/package/commander) and [Groq SDK](https://console.groq.com/docs/libraries)!
+
+![render1726611915069](https://github.com/user-attachments/assets/b6b8545e-940b-4ca2-b275-699ab363ffcb)
+
 
 ## Table of Contents
 
