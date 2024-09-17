@@ -58,9 +58,9 @@ program
 
       if (options.tokenUsage) {
         const { totalPromptTokens, totalResponseTokens } = responses.reduce(
-          (acc, response) => {
-            acc.totalPromptTokens += response.tokensInfo.prompt;
-            acc.totalResponseTokens += response.tokensInfo.response;
+          (accumulatedSum, response) => {
+            accumulatedSum.totalPromptTokens += response.tokensInfo.prompt;
+            accumulatedSum.totalResponseTokens += response.tokensInfo.response;
             return acc;
           },
           { totalPromptTokens: 0, totalResponseTokens: 0 }
