@@ -53,6 +53,7 @@ If you are going to be defining custom Base URL and/or Model refer to [Groq Docu
 - `-m, --model <model-name>`: The model name to use for processing. Default: `llama-3.1-70b-versatile`.
 - `-o, --output <file>`: The output file path where the results will be saved.
 - `-t, --temperature <number>`: The temperature for the model, ranging from 0 to 2. Default: `1`.
+- `-u, --token-usage`: Display number of tokens that were sent in the prompt and the number of tokens that were returned. Default: `false`.
 - `-h, --help`: Display the help message for user.
 - `-v, --version`: Display the current version of the tool.
 

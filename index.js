@@ -20,6 +20,7 @@ program
   .addOption(new Option('-m, --model <model-name>', 'define the model to use for processing').default('llama-3.1-70b-versatile').env('MODEL_NAME'))
   .addOption(new Option('-o, --output <file>', 'define an output file with valid extension to be able access the output'))
   .addOption(new Option('-t, --temperature <number>', 'define temperature of chat completion between 0 to 2').default(1).argParser(parseFloat))
+  .addOption(new Option('-u, --token-usage', 'specify if you want to see tokens that were sent in the prompt and the number of tokens that were returned'))
 
 
 
@@ -37,16 +38,38 @@ program
           options.model,
           Temperature
         );
-        return response.choices[0].message.content;
+
+        return {
+          content: response.choices[0].message.content,
+          tokensInfo: {
+            prompt: response.usage.prompt_tokens,
+            response: response.usage.completion_tokens
+          }
+        };
       }));
       
-      const output = responses.join('\n\n=================================================================================\n\n'); 
+      const output = responses.map(response => response.content).join('\n\n=================================================================================\n\n'); 
       if (options.output) {
         fs.writeFileSync(options.output, output); // Save all responses to the output file
         console.log(`File saved to ${options.output}`);
       } else {
         console.log(output);
       }
+
+      if (options.tokenUsage) {
+        const { totalPromptTokens, totalResponseTokens } = responses.reduce(
+          (accumulatedSum, response) => {
+            accumulatedSum.totalPromptTokens += response.tokensInfo.prompt;
+            accumulatedSum.totalResponseTokens += response.tokensInfo.response;
+            return accumulatedSum;
+          },
+          { totalPromptTokens: 0, totalResponseTokens: 0 }
+        );
+
+        console.log('\n=================================================================================\n');
+        console.log('TOTAL PROMPT TOKENS:', totalPromptTokens);
+        console.log('TOTAL RESPONSE TOKENS:', totalResponseTokens);
+    }
     } catch (error) {
       console.error(`Error: ${error.message}`);
     }
