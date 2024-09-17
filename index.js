@@ -15,12 +15,12 @@ program
   .description(packageJSON.description)
 
 program
-  .addOption(new Option('-u, --token-usage', 'specify if you want to see tokens that were sent in the prompt and the number of tokens that were returned'))
   .addOption(new Option('-a, --api-key <your-key>', 'define API key to use for processing defined in .env file').env('API_KEY').makeOptionMandatory())
   .addOption(new Option('-b, --baseURL <url>', 'define the base URL to use for processing defined in .env file').default('https://api.groq.com/').env('BASE_URL'))
   .addOption(new Option('-m, --model <model-name>', 'define the model to use for processing').default('llama-3.1-70b-versatile').env('MODEL_NAME'))
   .addOption(new Option('-o, --output <file>', 'define an output file with valid extension to be able access the output'))
   .addOption(new Option('-t, --temperature <number>', 'define temperature of chat completion between 0 to 2').default(1).argParser(parseFloat))
+  .addOption(new Option('-u, --token-usage', 'specify if you want to see tokens that were sent in the prompt and the number of tokens that were returned'))
 
 
 
@@ -48,7 +48,7 @@ program
         };
       }));
       
-      const output = responses.map(r => r.content).join('\n\n=================================================================================\n\n'); 
+      const output = responses.map(response => response.content).join('\n\n=================================================================================\n\n'); 
       if (options.output) {
         fs.writeFileSync(options.output, output); // Save all responses to the output file
         console.log(`File saved to ${options.output}`);
@@ -58,9 +58,9 @@ program
 
       if (options.tokenUsage) {
         const { totalPromptTokens, totalResponseTokens } = responses.reduce(
-          (acc, r) => {
-            acc.totalPromptTokens += r.tokensInfo.prompt;
-            acc.totalResponseTokens += r.tokensInfo.response;
+          (acc, response) => {
+            acc.totalPromptTokens += response.tokensInfo.prompt;
+            acc.totalResponseTokens += response.tokensInfo.response;
             return acc;
           },
           { totalPromptTokens: 0, totalResponseTokens: 0 }
