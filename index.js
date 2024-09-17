@@ -15,6 +15,7 @@ program
   .description(packageJSON.description)
 
 program
+  .addOption(new Option('-u, --token-usage', 'specify if you want to see tokens that were sent in the prompt and the number of tokens that were returned'))
   .addOption(new Option('-a, --api-key <your-key>', 'define API key to use for processing defined in .env file').env('API_KEY').makeOptionMandatory())
   .addOption(new Option('-b, --baseURL <url>', 'define the base URL to use for processing defined in .env file').default('https://api.groq.com/').env('BASE_URL'))
   .addOption(new Option('-m, --model <model-name>', 'define the model to use for processing').default('llama-3.1-70b-versatile').env('MODEL_NAME'))
@@ -37,16 +38,39 @@ program
           options.model,
           Temperature
         );
-        return response.choices[0].message.content;
+        console.log('RESPONSE:', response);
+
+        return {
+          content: response.choices[0].message.content,
+          tokensInfo: {
+            prompt: response.usage.prompt_tokens,
+            response: response.usage.completion_tokens
+          }
+        };
       }));
       
-      const output = responses.join('\n\n=================================================================================\n\n'); 
+      const output = responses.map(r => r.content).join('\n\n=================================================================================\n\n'); 
       if (options.output) {
         fs.writeFileSync(options.output, output); // Save all responses to the output file
         console.log(`File saved to ${options.output}`);
       } else {
         console.log(output);
       }
+
+      if (options.tokenUsage) {
+        const { totalPromptTokens, totalResponseTokens } = responses.reduce(
+          (acc, r) => {
+            acc.totalPromptTokens += r.tokensInfo.prompt;
+            acc.totalResponseTokens += r.tokensInfo.response;
+            return acc;
+          },
+          { totalPromptTokens: 0, totalResponseTokens: 0 }
+        );
+
+        console.log('\n=================================================================================\n');
+        console.log('TOTAL PROMPT TOKENS:', totalPromptTokens);
+        console.log('TOTAL RESPONSE TOKENS:', totalResponseTokens);
+    }
     } catch (error) {
       console.error(`Error: ${error.message}`);
     }
