@@ -4,6 +4,17 @@ CLI tool to processes a file and output the code blocks along with explanation, 
 
 Built using [Commander.js](https://www.npmjs.com/package/commander) and [Groq SDK](https://console.groq.com/docs/libraries)!
 
+## Table of Contents
+
+1. [Features](#features)
+2. [Prerequisites](#prerequisites)
+3. [Installation](#installation)
+4. [Options](#options)
+5. [Arguments](#arguments)
+6. [Usage](#usage)
+7. [Version](#version)
+
+
 ## Features
 If you are going to be defining custom Base URL and/or Model refer to [Groq Documentation](https://console.groq.com/docs/quickstart).
 
