@@ -61,7 +61,7 @@ program
           (accumulatedSum, response) => {
             accumulatedSum.totalPromptTokens += response.tokensInfo.prompt;
             accumulatedSum.totalResponseTokens += response.tokensInfo.response;
-            return acc;
+            return accumulatedSum;
           },
           { totalPromptTokens: 0, totalResponseTokens: 0 }
         );
