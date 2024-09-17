@@ -58,7 +58,7 @@ If you are going to be defining custom Base URL and/or Model refer to [Groq Docu
 
 ## Arguments
 
-- `<file-path>`: **(Required)** The path to the file you want explanation for.
+- `<files>`: **(Required)** The path to the file or files you want explanation for.
 
 ## Usage
 
@@ -86,6 +86,12 @@ Or if you have your API_KEY defined in `.env` you can just run the following:
 
 ```bash
 node index.js examples/bubble_sort.js
+```
+
+or
+
+```bash
+node index.js examples/bubble_sort.js examples/selection_sort.js
 ```
 
 ## Version

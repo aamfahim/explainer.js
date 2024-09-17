@@ -17,31 +17,35 @@ program
 program
   .addOption(new Option('-a, --api-key <your-key>', 'define API key to use for processing defined in .env file').env('API_KEY').makeOptionMandatory())
   .addOption(new Option('-b, --baseURL <url>', 'define the base URL to use for processing defined in .env file').default('https://api.groq.com/').env('BASE_URL'))
-  .addOption(new Option('-m, --model <model-name>',  'define the model to use for processing').default('llama-3.1-70b-versatile').env('MODEL_NAME'))
+  .addOption(new Option('-m, --model <model-name>', 'define the model to use for processing').default('llama-3.1-70b-versatile').env('MODEL_NAME'))
   .addOption(new Option('-o, --output <file>', 'define an output file with valid extension to be able access the output'))
   .addOption(new Option('-t, --temperature <number>', 'define temperature of chat completion between 0 to 2').default(1).argParser(parseFloat))
-  
 
 
-  
-program.argument('<./file_path>', 'path of the file to process')
-  .action(async (file, options) => {
+
+
+  program.argument('<files...>', 'path of the files to process')
+  .action(async (files, options) => {
     try {
-      const response = await ProcessFileWithProvider(GroqInstance(options.apiKey, options.baseURL),
-                                                     BuildFilePrompt(file),
-                                                     options.model,
-                                                     TemperatureChecker(options.temperature));
-
-      if(response.choices[0].message.content){
-        if(options.output){
-          fs.writeFileSync(options.output, response.choices[0].message.content);
-          console.log(`File saved to ${options.output}`);
-        }else{
-          console.log(response.choices[0].message.content)
-        }
-      }
-      else{
-        console.log('No explanation returned by provider.');
+      const Groq = GroqInstance(options.apiKey, options.baseURL);
+      const Temperature = TemperatureChecker(options.temperature);
+      console.log('Processing request with provider...');
+      const responses = await Promise.all(files.map(async (file) => {
+        const response = await ProcessFileWithProvider(
+          Groq,
+          BuildFilePrompt(file),
+          options.model,
+          Temperature
+        );
+        return response.choices[0].message.content;
+      }));
+      
+      const output = responses.join('\n\n=================================================================================\n\n'); 
+      if (options.output) {
+        fs.writeFileSync(options.output, output); // Save all responses to the output file
+        console.log(`File saved to ${options.output}`);
+      } else {
+        console.log(output);
       }
     } catch (error) {
       console.error(`Error: ${error.message}`);
