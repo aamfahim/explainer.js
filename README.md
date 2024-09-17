@@ -14,8 +14,8 @@ Built using [Commander.js](https://www.npmjs.com/package/commander) and [Groq SD
 6. [Usage](#usage)
 7. [Version](#version)
 
-
 ## Features
+
 If you are going to be defining custom Base URL and/or Model refer to [Groq Documentation](https://console.groq.com/docs/quickstart).
 
 - **API Key Handling**: Uses an API key from the `.env` file or passed as a command-line argument.
