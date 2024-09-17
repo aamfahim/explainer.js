@@ -38,7 +38,6 @@ program
           options.model,
           Temperature
         );
-        console.log('RESPONSE:', response);
 
         return {
           content: response.choices[0].message.content,
