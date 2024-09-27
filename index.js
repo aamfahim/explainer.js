@@ -71,9 +71,13 @@ program
         console.log('\n=================================================================================\n');
         console.log('TOTAL PROMPT TOKENS:', totalPromptTokens);
         console.log('TOTAL RESPONSE TOKENS:', totalResponseTokens);
-    }
+      }
+      
+      process.exit(0);
+
     } catch (error) {
       console.error(`Error: ${error.message}`);
+      process.exit(1);
     }
   });
 
