@@ -73,7 +73,7 @@ If you are going to be defining custom Base URL and/or Model refer to [Groq Docu
 
 ## Arguments
 
-- `<files>`: **(Required)** The path to the file or files you want explanation for.
+- `<files>`: **(Required)** path of the files or directories to process.
 
 ## Usage
 
