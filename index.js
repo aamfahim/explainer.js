@@ -5,6 +5,7 @@ import GroqInstance from './util/GroqInstance.js';
 import BuildFilePrompt from './util/BuildFilePrompt.js';
 import ProcessFileWithProvider from './util/ProcessFileWithProvider.js';
 import TemperatureChecker from './util/TemperatureChecker.js';
+import FilePathResolver from './util/FilePathResolver.js';
 
 const packageJSON = JSON.parse(fs.readFileSync('./package.json'));
 const program = new Command();
@@ -25,13 +26,14 @@ program
 
 
 
-  program.argument('<files...>', 'path of the files to process')
+  program.argument('<files...>', 'path of the files or directories to process')
   .action(async (files, options) => {
     try {
+      const resolvedFiles = FilePathResolver(files);
       const Groq = GroqInstance(options.apiKey, options.baseURL);
       const Temperature = TemperatureChecker(options.temperature);
       console.log('Processing request with provider...');
-      const responses = await Promise.all(files.map(async (file) => {
+      const responses = await Promise.all(resolvedFiles.map(async (file) => {
         const response = await ProcessFileWithProvider(
           Groq,
           BuildFilePrompt(file),
