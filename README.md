@@ -30,7 +30,7 @@ If you are going to be defining custom Base URL and/or Model refer to [Groq Docu
   - When passing output file name, ensure it has a text readable extension such as `.txt` or `.md`. Otherwise output will not be accessible.
 - **Temperature Control**: Adjust the temperature of the model response, allowing for more or less creativity in the output. Valid temperature is between 0 to 2.
   - Higher the temperature longer the process time.
-- **TOML Config Override**: Uses a TOML config file that contains any or all of the options supported giving precedence to them over arguments provided in the CLI
+- **TOML Config Override**: Uses a TOML config file that contains any or all of the options supported giving precedence to CLI options over TOML config file options
 
 ## Prerequisites
 
