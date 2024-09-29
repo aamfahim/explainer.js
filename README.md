@@ -30,7 +30,7 @@ If you are going to be defining custom Base URL and/or Model refer to [Groq Docu
   - When passing output file name, ensure it has a text readable extension such as `.txt` or `.md`. Otherwise output will not be accessible.
 - **Temperature Control**: Adjust the temperature of the model response, allowing for more or less creativity in the output. Valid temperature is between 0 to 2.
   - Higher the temperature longer the process time.
-- **TOML Config Override**: Uses a TOML config file that contains any or all of the options supported giving precedence to CLI options over TOML config file options
+- **TOML Config Override**: Uses a TOML config file `.explainer-config.toml` in the `home` directory that contains any or all of the options supported giving precedence to CLI options over TOML config file options
 
 ## Prerequisites
 
@@ -71,7 +71,6 @@ If you are going to be defining custom Base URL and/or Model refer to [Groq Docu
 - `-u, --token-usage`: Display number of tokens that were sent in the prompt and the number of tokens that were returned. Default: `false`.
 - `-h, --help`: Display the help message for user.
 - `-v, --version`: Display the current version of the tool.
-- `-l, --toml <file>`: specify if you want to use a custom toml config file that contains all of your options
 
 ## Arguments
 
@@ -113,10 +112,10 @@ node index.js examples/bubble_sort.js examples/selection_sort.js
 
 ### TOML Config
 
-You can create a [TOML](https://toml.io/en/) config file that contains all of your options for the tool, i.e.:
+You can create a [TOML](https://toml.io/en/) `.explainer-config.toml` config file that contains all of your options for the tool and place it in your `home` directory, i.e. (or simply modify and copy the one that is in the `examples directory`):
 ```
 # Any of these config options can or can not be provided
-# Feel free to place this file anywhere, i.e: cp examples/config.toml ~/explainer-config.toml
+# Feel free to place this file in your home directory, i.e: cp examples/.explainer-config.toml ~
 
 apiKey = "YOUR_API_KEY"
 baseURL = "https://api.groq.com/"
@@ -126,17 +125,7 @@ output = "testingToml.txt" # will overwrite a file with the same name
 tokenUsage = true # can be true or false
 ```
 
-Then you may use it as follows:
-
-```bash
-node index.js --toml path/filename.toml examples/bubble_sort.js -h
-node index.js -l path/filename.toml examples/bubble_sort.js -h
-```
-
-You may also add more options to it, as in, let's say your `TOML` config file does not have a preset tokenUsage option:
-```bash
-node index.js --toml path/filename.toml examples/bubble_sort.js -u
-```
+The tool will automatically detect and use that file if it exists, however, you do have the option to override and options in the `TOML` file using CLI options.
 
 ## Version
 

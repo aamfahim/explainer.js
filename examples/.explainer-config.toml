@@ -1,5 +1,5 @@
 # Any of these config options can or can not be provided
-# Feel free to place this file anywhere, i.e: cp examples/config.toml ~/explainer-config.toml
+# Feel free to place this file in your home directory, i.e: cp examples/.explainer-config.toml ~
 
 apiKey = "YOUR_API_KEY"
 baseURL = "https://api.groq.com/"
