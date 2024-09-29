@@ -31,16 +31,24 @@ program
   program.argument('<files...>', 'path of the files or directories to process')
   .action(async (files, options) => {
     try {
-      TomlChecker(options.toml);
+      const tomlConfig = TomlChecker(options.toml);
+      // check for configs provided in toml file
+      const apiKey = tomlConfig.apiKey || options.apiKey;
+      const baseURL = tomlConfig.baseURL || options.baseURL;
+      const temp = tomlConfig.temperature || options.temperature;
+      const model = tomlConfig.model || options.model;
+      const outputFile = tomlConfig.output || options.output;
+      const tokenUsage = tomlConfig.tokenUsage || options.tokenUsage;
+      
       const resolvedFiles = FilePathResolver(files);
-      const Groq = GroqInstance(options.apiKey, options.baseURL);
-      const Temperature = TemperatureChecker(options.temperature);
+      const Groq = GroqInstance(apiKey, baseURL);
+      const Temperature = TemperatureChecker(temp);
       console.log('Processing request with provider...');
       const responses = await Promise.all(resolvedFiles.map(async (file) => {
         const response = await ProcessFileWithProvider(
           Groq,
           BuildFilePrompt(file),
-          options.model,
+          model,
           Temperature
         );
 
@@ -54,14 +62,14 @@ program
       }));
       
       const output = responses.map(response => response.content).join('\n\n=================================================================================\n\n'); 
-      if (options.output) {
-        fs.writeFileSync(options.output, output); // Save all responses to the output file
-        console.log(`File saved to ${options.output}`);
+      if (outputFile) {
+        fs.writeFileSync(outputFile, output); // Save all responses to the output file
+        console.log(`File saved to ${outputFile}`);
       } else {
         console.log(output);
       }
 
-      if (options.tokenUsage) {
+      if (tokenUsage) {
         const { totalPromptTokens, totalResponseTokens } = responses.reduce(
           (accumulatedSum, response) => {
             accumulatedSum.totalPromptTokens += response.tokensInfo.prompt;
