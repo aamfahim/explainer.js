@@ -4,7 +4,6 @@ import path from 'path';
 import { readFileSync } from 'fs';
 
 const TomlChecker = (tomlFile) => {
-
     let config = {};
 
     if(tomlFile)
@@ -15,15 +14,11 @@ const TomlChecker = (tomlFile) => {
         }
 
         const finalPath = path.resolve(tomlFile);
-
         const fileContents = readFileSync(finalPath, 'utf8');
-
         config = TOML.parse(fileContents);
 
         return config;
     }
-
-
     return config;
 };
 
