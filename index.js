@@ -22,6 +22,7 @@ program
   .addOption(new Option('-o, --output <file>', 'define an output file with valid extension to be able access the output'))
   .addOption(new Option('-t, --temperature <number>', 'define temperature of chat completion between 0 to 2').default(1).argParser(parseFloat))
   .addOption(new Option('-u, --token-usage', 'specify if you want to see tokens that were sent in the prompt and the number of tokens that were returned'))
+  .addOption(new Option('-l, --toml', 'specify if you want to use a custom toml config file that contains all of your options'));
 
 
 
