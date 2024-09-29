@@ -33,12 +33,12 @@ program
     try {
       const tomlConfig = TomlChecker(options.toml);
       // check for configs provided in toml file
-      const apiKey = tomlConfig.apiKey || options.apiKey;
-      const baseURL = tomlConfig.baseURL || options.baseURL;
-      const temp = tomlConfig.temperature || options.temperature;
-      const model = tomlConfig.model || options.model;
-      const outputFile = tomlConfig.output || options.output;
-      const tokenUsage = tomlConfig.tokenUsage || options.tokenUsage;
+      const apiKey = options.apiKey || tomlConfig.apiKey;
+      const baseURL = options.baseURL || tomlConfig.baseURL;
+      const temp = options.temperature || tomlConfig.temperature;
+      const model = options.model || tomlConfig.model;
+      const outputFile = options.output || tomlConfig.output;
+      const tokenUsage = options.tokenUsage || tomlConfig.tokenUsage;      
       
       const resolvedFiles = FilePathResolver(files);
       const Groq = GroqInstance(apiKey, baseURL);
