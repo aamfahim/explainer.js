@@ -30,6 +30,7 @@ If you are going to be defining custom Base URL and/or Model refer to [Groq Docu
   - When passing output file name, ensure it has a text readable extension such as `.txt` or `.md`. Otherwise output will not be accessible.
 - **Temperature Control**: Adjust the temperature of the model response, allowing for more or less creativity in the output. Valid temperature is between 0 to 2.
   - Higher the temperature longer the process time.
+- **TOML Config Override**: Uses a TOML config file `.explainer-config.toml` in the `home` directory that contains any or all of the options supported giving precedence to CLI options over TOML config file options.
 
 ## Prerequisites
 
@@ -108,6 +109,36 @@ or
 ```bash
 node index.js examples/bubble_sort.js examples/selection_sort.js
 ```
+
+### TOML Config
+
+You can create a [TOML](https://toml.io/en/) `.explainer-config.toml` config file that contains all of your options for the tool and place it in your `home` directory, i.e. (or simply modify and copy the one that is in the `examples directory`):
+
+To copy to your home directory, if you're using a `Linux` environment:
+
+```bash
+cp examples/.explainer-config.toml ~
+```
+
+If you're using a `Windows` environment:
+
+```bash
+copy examples\.explainer-config.toml %USERPROFILE%
+```
+
+Any of these config options can or can not be provided in the .toml file, as in, you may provide one or two options in the `.toml` file, and provide the rest via the CLI!  
+`Note:` for the tool to work, you must provide the apiKey in either the `.toml`/`.env` files, or via the `command line` 
+
+```toml
+apiKey = "YOUR_API_KEY"
+baseURL = "https://api.groq.com/"
+temperature = 1 # between 0 and 2
+model = "llama-3.1-70b-versatile" # any supported model
+output = "output.txt" # will overwrite a file with the same name
+tokenUsage = false # can be true or false
+```
+
+The tool will automatically detect and use that file if it exists, however, you do have the option to override and options in the `TOML` file using CLI options.
 
 ## Version
 
