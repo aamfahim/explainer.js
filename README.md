@@ -6,7 +6,6 @@ Built using [Commander.js](https://www.npmjs.com/package/commander) and [Groq SD
 
 ![render1726611915069](https://github.com/user-attachments/assets/b6b8545e-940b-4ca2-b275-699ab363ffcb)
 
-
 ## Table of Contents
 
 1. [Features](#features)
@@ -15,7 +14,8 @@ Built using [Commander.js](https://www.npmjs.com/package/commander) and [Groq SD
 4. [Options](#options)
 5. [Arguments](#arguments)
 6. [Usage](#usage)
-7. [Version](#version)
+7. [TOML Configuration](#toml-configuration)
+8. [Version](#version)
 
 ## Features
 
@@ -110,24 +110,24 @@ or
 node index.js examples/bubble_sort.js examples/selection_sort.js
 ```
 
-### TOML Config
+## TOML Configuration
 
 You can create a [TOML](https://toml.io/en/) `.explainer-config.toml` config file that contains all of your options for the tool and place it in your `home` directory, i.e. (or simply modify and copy the one that is in the `examples directory`):
 
-To copy to your home directory, if you're using a `Linux` environment:
+To copy to your home directory, if you're using a `Linux` or `Powershell` terminal:
 
 ```bash
 cp examples/.explainer-config.toml ~
 ```
 
-If you're using a `Windows` environment:
+If you're using a `Command Prompt` terminal:
 
 ```bash
 copy examples\.explainer-config.toml %USERPROFILE%
 ```
 
 Any of these config options can or can not be provided in the .toml file, as in, you may provide one or two options in the `.toml` file, and provide the rest via the CLI!  
-`Note:` for the tool to work, you must provide the apiKey in either the `.toml`/`.env` files, or via the `command line` 
+`Note:` for the tool to work, you must provide the apiKey in either the `.toml`/`.env` files, or via the `command line`
 
 ```toml
 apiKey = "YOUR_API_KEY"
