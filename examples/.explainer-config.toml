@@ -6,5 +6,5 @@ apiKey = "YOUR_API_KEY"
 baseURL = "https://api.groq.com/"
 temperature = 0.8 # between 0.1 and 2
 model = "llama-3.1-70b-versatile" # any supported model
-output = "testingToml.txt" # will overwrite a file with the same name
+output = "output.txt" # will overwrite a file with the same name
 tokenUsage = false # can be true or false
