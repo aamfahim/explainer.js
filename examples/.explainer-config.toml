@@ -1,5 +1,6 @@
-# Any of these config options can or can not be provided
+# Any of these config options can or can not be provided in the .toml file
 # Feel free to place this file in your home directory, i.e: cp examples/.explainer-config.toml ~
+# Note: for the tool to work, you must provide the apiKey in either the .toml/.env files, or via the command line
 
 apiKey = "YOUR_API_KEY"
 baseURL = "https://api.groq.com/"
