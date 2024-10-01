@@ -24,7 +24,7 @@ const TomlChecker = () => {
     }
     catch(error)
     {
-        throw new Error(`TOML parsing failed:`, error);
+        throw new Error(`TOML parsing failed: ${error.message}`);
     }
 
 };
