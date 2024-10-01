@@ -113,11 +113,15 @@ node index.js examples/bubble_sort.js examples/selection_sort.js
 ### TOML Config
 
 You can create a [TOML](https://toml.io/en/) `.explainer-config.toml` config file that contains all of your options for the tool and place it in your `home` directory, i.e. (or simply modify and copy the one that is in the `examples directory`):
-```toml
-# Any of these config options can or can not be provided in the .toml file
-# Feel free to place this file in your home directory, i.e: cp examples/.explainer-config.toml ~
-# Note: for the tool to work, you must provide the apiKey in either the .toml/.env files, or via the command line
 
+To copy to your home directory:
+```bash
+cp examples/.explainer-config.toml ~
+```
+Any of these config options can or can not be provided in the .toml file, as in, you may provide one or two options in the `.toml` file, and provide the rest via the CLI!  
+`Note:` for the tool to work, you must provide the apiKey in either the `.toml`/`.env` files, or via the `command line` 
+
+```toml
 apiKey = "YOUR_API_KEY"
 baseURL = "https://api.groq.com/"
 temperature = 1 # between 0 and 2
