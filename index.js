@@ -31,7 +31,7 @@ program
   .action(async (files, options) => {
     try {
       const tomlConfig = TomlChecker();
-      // check for configs provided in toml file
+      
       const apiKey = options.apiKey || tomlConfig.apiKey;
       const baseURL = options.baseURL || tomlConfig.baseURL;
       const temp = options.temperature || tomlConfig.temperature;
