@@ -6,6 +6,7 @@ import BuildFilePrompt from './util/BuildFilePrompt.js';
 import ProcessFileWithProvider from './util/ProcessFileWithProvider.js';
 import TemperatureChecker from './util/TemperatureChecker.js';
 import FilePathResolver from './util/FilePathResolver.js';
+import TomlChecker from './util/TomlChecker.js';
 
 const packageJSON = JSON.parse(fs.readFileSync('./package.json'));
 const program = new Command();
@@ -16,7 +17,7 @@ program
   .description(packageJSON.description)
 
 program
-  .addOption(new Option('-a, --api-key <your-key>', 'define API key to use for processing defined in .env file').env('API_KEY').makeOptionMandatory())
+  .addOption(new Option('-a, --api-key <your-key>', 'define API key to use for processing defined in .env file').env('API_KEY'))
   .addOption(new Option('-b, --baseURL <url>', 'define the base URL to use for processing defined in .env file').default('https://api.groq.com/').env('BASE_URL'))
   .addOption(new Option('-m, --model <model-name>', 'define the model to use for processing').default('llama-3.1-70b-versatile').env('MODEL_NAME'))
   .addOption(new Option('-o, --output <file>', 'define an output file with valid extension to be able access the output'))
@@ -29,15 +30,24 @@ program
   program.argument('<files...>', 'path of the files or directories to process')
   .action(async (files, options) => {
     try {
+      const tomlConfig = TomlChecker();
+      
+      const apiKey = options.apiKey || tomlConfig.apiKey;
+      const baseURL = options.baseURL || tomlConfig.baseURL;
+      const temp = options.temperature || tomlConfig.temperature;
+      const model = options.model || tomlConfig.model;
+      const outputFile = options.output || tomlConfig.output;
+      const tokenUsage = options.tokenUsage || tomlConfig.tokenUsage;      
+      
       const resolvedFiles = FilePathResolver(files);
-      const Groq = GroqInstance(options.apiKey, options.baseURL);
-      const Temperature = TemperatureChecker(options.temperature);
+      const Groq = GroqInstance(apiKey, baseURL);
+      const Temperature = TemperatureChecker(temp);
       console.log('Processing request with provider...');
       const responses = await Promise.all(resolvedFiles.map(async (file) => {
         const response = await ProcessFileWithProvider(
           Groq,
           BuildFilePrompt(file),
-          options.model,
+          model,
           Temperature
         );
 
@@ -51,14 +61,14 @@ program
       }));
       
       const output = responses.map(response => response.content).join('\n\n=================================================================================\n\n'); 
-      if (options.output) {
-        fs.writeFileSync(options.output, output); // Save all responses to the output file
-        console.log(`File saved to ${options.output}`);
+      if (outputFile) {
+        fs.writeFileSync(outputFile, output); // Save all responses to the output file
+        console.log(`File saved to ${outputFile}`);
       } else {
         console.log(output);
       }
 
-      if (options.tokenUsage) {
+      if (tokenUsage) {
         const { totalPromptTokens, totalResponseTokens } = responses.reduce(
           (accumulatedSum, response) => {
             accumulatedSum.totalPromptTokens += response.tokensInfo.prompt;

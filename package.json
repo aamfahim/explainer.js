@@ -18,6 +18,7 @@
   },
   "homepage": "https://github.com/aamfahim/explainer.js#readme",
   "dependencies": {
+    "@ltd/j-toml": "^1.38.0",
     "commander": "^12.1.0",
     "dotenv": "^16.4.5",
     "groq-sdk": "^0.7.0"
