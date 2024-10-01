@@ -119,6 +119,7 @@ To copy to your home directory:
 ```bash
 cp examples/.explainer-config.toml ~
 ```
+
 Any of these config options can or can not be provided in the .toml file, as in, you may provide one or two options in the `.toml` file, and provide the rest via the CLI!  
 `Note:` for the tool to work, you must provide the apiKey in either the `.toml`/`.env` files, or via the `command line` 
 
