@@ -22,9 +22,9 @@ const TomlChecker = () => {
         const fileContents = readFileSync(finalPath, 'utf8');
         return TOML.parse(fileContents);
     }
-    catch(err)
+    catch(error)
     {
-        throw new Error(`TOML parsing failed:`, err);
+        throw new Error(`TOML parsing failed:`, error);
     }
 
 };
