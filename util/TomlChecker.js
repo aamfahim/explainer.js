@@ -1,5 +1,5 @@
-import * as TOML from '@ltd/j-toml';
-import * as os from 'os';
+import TOML from '@ltd/j-toml';
+import os from 'os';
 import path from 'path';
 import { readFileSync, existsSync } from 'fs';
 
