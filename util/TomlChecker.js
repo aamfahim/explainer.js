@@ -17,9 +17,16 @@ const TomlChecker = () => {
         return {};
     }
 
-    const finalPath = path.resolve(tomlFile);
-    const fileContents = readFileSync(finalPath, 'utf8');
-    return TOML.parse(fileContents);
+    try{
+        const finalPath = path.resolve(tomlFile);
+        const fileContents = readFileSync(finalPath, 'utf8');
+        return TOML.parse(fileContents);
+    }
+    catch(err)
+    {
+        throw new Error(`TOML parsing failed:`, err);
+    }
+
 };
 
 export default TomlChecker;
