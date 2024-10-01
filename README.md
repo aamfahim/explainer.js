@@ -114,10 +114,16 @@ node index.js examples/bubble_sort.js examples/selection_sort.js
 
 You can create a [TOML](https://toml.io/en/) `.explainer-config.toml` config file that contains all of your options for the tool and place it in your `home` directory, i.e. (or simply modify and copy the one that is in the `examples directory`):
 
-To copy to your home directory:
+To copy to your home directory, if you're using a `Linux` environment:
 
 ```bash
 cp examples/.explainer-config.toml ~
+```
+
+If you're using a `Windows` environment:
+
+```bash
+copy examples\.explainer-config.toml %USERPROFILE%
 ```
 
 Any of these config options can or can not be provided in the .toml file, as in, you may provide one or two options in the `.toml` file, and provide the rest via the CLI!  
