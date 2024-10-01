@@ -25,7 +25,7 @@ const processFileWithProvider = async (provider, prompt, model, temperature) => 
         return response
     } catch (error) {
         throw new Error(`Provider processing failed: ${error.message}`);
-    }    
+    }
 }
 
 export default processFileWithProvider;
