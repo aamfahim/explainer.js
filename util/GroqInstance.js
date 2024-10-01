@@ -12,7 +12,7 @@ const GroqInstance = (apiKey, baseURL) => {
     if (!ArgsChecker([apiKey, baseURL], 2)) {
         console.log(apiKey, baseURL);
         throw new Error(`apiKey & baseURL are missing or values are not defined properly`);
-    }    
+    }
 
     return new Groq({
         apiKey: apiKey,
