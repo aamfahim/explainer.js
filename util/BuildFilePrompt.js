@@ -20,6 +20,6 @@ const BuildFilePrompt = (file_path) => {
     const fileContent = fs.readFileSync(file_path, 'utf8');
 
     return `Explain each code block in the following file by adding comments: \n\n${fileContent}\n\n`;
-} 
+}
 
 export default BuildFilePrompt;
