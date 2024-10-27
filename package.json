@@ -7,7 +7,9 @@
     "scripts": {
         "test": "npm run test",
         "prettier": "prettier --write .",
+        "prettier:check": "prettier --check .",
         "lint": "npx eslint",
+        "lint:check": "npx eslint . --max-warnings=0",
         "clean": "npm run prettier && npm run lint",
         "prepare": "husky"
     },
