@@ -5,7 +5,8 @@
     "main": "index.js",
     "type": "module",
     "scripts": {
-        "test": "npm run test"
+        "test": "npm run test",
+        "prettier": "prettier --write ."
     },
     "repository": {
         "type": "git",

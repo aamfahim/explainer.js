@@ -25,3 +25,11 @@ Thank you for taking your time to contribute! Before filing an issue check preex
    ```.env
    API_KEY=your-api-key
    ```
+
+## Scripts
+
+1. You can run prettier to keep consistent styling.
+
+    ```bash
+    npm run prettier
+    ```
