@@ -13,6 +13,9 @@
         "clean": "npm run prettier && npm run lint",
         "prepare": "husky"
     },
+    "lint-staged": {
+        "*.{js,jsx,ts,tsx}": "npm run clean"
+    },
     "repository": {
         "type": "git",
         "url": "git+https://github.com/aamfahim/explainer.js.git"

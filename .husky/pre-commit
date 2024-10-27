@@ -1,1 +1,1 @@
-npm run clean
+npx lint-staged
