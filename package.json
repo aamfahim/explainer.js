@@ -1,26 +1,45 @@
 {
-  "name": "explainer.js",
-  "version": "0.1.0",
-  "description": "CLI tool to process files and output the code blocks along with explanation",
-  "main": "index.js",
-  "type": "module",
-  "scripts": {
-    "test": "npm run test"
-  },
-  "repository": {
-    "type": "git",
-    "url": "git+https://github.com/aamfahim/explainer.js.git"
-  },
-  "author": "aamfahim",
-  "license": "MIT",
-  "bugs": {
-    "url": "https://github.com/aamfahim/explainer.js/issues"
-  },
-  "homepage": "https://github.com/aamfahim/explainer.js#readme",
-  "dependencies": {
-    "@ltd/j-toml": "^1.38.0",
-    "commander": "^12.1.0",
-    "dotenv": "^16.4.5",
-    "groq-sdk": "^0.7.0"
-  }
+    "name": "explainer.js",
+    "version": "0.1.0",
+    "description": "CLI tool to process files and output the code blocks along with explanation",
+    "main": "index.js",
+    "type": "module",
+    "scripts": {
+        "test": "npm run test",
+        "prettier": "prettier --write .",
+        "prettier:check": "prettier --check .",
+        "prettier:file": "prettier --write --",
+        "lint": "npx eslint",
+        "lint:check": "npx eslint . --max-warnings=0",
+        "lint:file": "eslint --",
+        "clean": "npm run prettier && npm run lint",
+        "prepare": "husky"
+    },
+    "lint-staged": {
+        "*.{js,jsx,ts,tsx}": "npm run clean"
+    },
+    "repository": {
+        "type": "git",
+        "url": "git+https://github.com/aamfahim/explainer.js.git"
+    },
+    "author": "aamfahim",
+    "license": "MIT",
+    "bugs": {
+        "url": "https://github.com/aamfahim/explainer.js/issues"
+    },
+    "homepage": "https://github.com/aamfahim/explainer.js#readme",
+    "dependencies": {
+        "@ltd/j-toml": "^1.38.0",
+        "commander": "^12.1.0",
+        "dotenv": "^16.4.5",
+        "groq-sdk": "^0.7.0"
+    },
+    "devDependencies": {
+        "@eslint/js": "^9.13.0",
+        "eslint": "^9.13.0",
+        "globals": "^15.11.0",
+        "husky": "^9.1.6",
+        "lint-staged": "^15.2.10",
+        "prettier": "3.3.3"
+    }
 }

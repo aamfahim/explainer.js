@@ -1,6 +1,6 @@
 import fs from 'fs';
 import path from 'path';
-import ArgsChecker from "./ArgsChecker.js";
+import ArgsChecker from './ArgsChecker.js';
 
 /**
  * Resolves file paths from the given array of paths. If a path is a directory,
@@ -13,7 +13,6 @@ import ArgsChecker from "./ArgsChecker.js";
  *                   if a path is invalid, or if no valid files are found.
  */
 const FilePathResolver = (paths) => {
-
     if (!ArgsChecker([paths], 1)) {
         throw new Error(`paths is missing or values are not defined properly`);
     }
@@ -22,9 +21,10 @@ const FilePathResolver = (paths) => {
 
     for (const givenPath of paths) {
         if (fs.lstatSync(givenPath).isDirectory()) {
-            const filesInDirectory = fs.readdirSync(givenPath)
-                .map(file => path.join(givenPath, file))
-                .filter(filePath => fs.lstatSync(filePath).isFile());
+            const filesInDirectory = fs
+                .readdirSync(givenPath)
+                .map((file) => path.join(givenPath, file))
+                .filter((filePath) => fs.lstatSync(filePath).isFile());
             filesToProcess.push(...filesInDirectory);
         } else if (fs.lstatSync(givenPath).isFile()) {
             filesToProcess.push(givenPath);
@@ -38,6 +38,6 @@ const FilePathResolver = (paths) => {
     }
 
     return filesToProcess;
-}
+};
 
 export default FilePathResolver;

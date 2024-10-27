@@ -1,5 +1,5 @@
-import Groq from "groq-sdk";
-import ArgsChecker from "./ArgsChecker.js";
+import Groq from 'groq-sdk';
+import ArgsChecker from './ArgsChecker.js';
 
 /**
  * Creates a new instance of Groq using the provided apiKey and baseURL.
@@ -11,13 +11,15 @@ import ArgsChecker from "./ArgsChecker.js";
 const GroqInstance = (apiKey, baseURL) => {
     if (!ArgsChecker([apiKey, baseURL], 2)) {
         console.log(apiKey, baseURL);
-        throw new Error(`apiKey & baseURL are missing or values are not defined properly`);
+        throw new Error(
+            `apiKey & baseURL are missing or values are not defined properly`
+        );
     }
 
     return new Groq({
         apiKey: apiKey,
-        baseURL: baseURL,
+        baseURL: baseURL
     });
-}
+};
 
 export default GroqInstance;
