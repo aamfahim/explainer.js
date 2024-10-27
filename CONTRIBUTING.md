@@ -33,3 +33,15 @@ Thank you for taking your time to contribute! Before filing an issue check preex
     ```bash
     npm run prettier
     ```
+
+2. You can run linter to keep your code clean.
+
+    ```bash
+    npm run lint
+    ```
+
+3. You can run both prettier and linter (in order).
+
+    ```bash
+    npm run clean
+    ```
