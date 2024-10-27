@@ -6,7 +6,9 @@
     "type": "module",
     "scripts": {
         "test": "npm run test",
-        "prettier": "prettier --write ."
+        "prettier": "prettier --write .",
+        "lint": "npx eslint",
+        "clean": "npm run prettier && npm run lint"
     },
     "repository": {
         "type": "git",
