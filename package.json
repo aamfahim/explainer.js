@@ -8,7 +8,8 @@
         "test": "npm run test",
         "prettier": "prettier --write .",
         "lint": "npx eslint",
-        "clean": "npm run prettier && npm run lint"
+        "clean": "npm run prettier && npm run lint",
+        "prepare": "husky"
     },
     "repository": {
         "type": "git",
@@ -30,6 +31,7 @@
         "@eslint/js": "^9.13.0",
         "eslint": "^9.13.0",
         "globals": "^15.11.0",
+        "husky": "^9.1.6",
         "prettier": "3.3.3"
     }
 }
