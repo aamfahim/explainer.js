@@ -20,15 +20,17 @@ const FilePathResolver = (paths) => {
     const filesToProcess = [];
 
     for (const givenPath of paths) {
-        if (fs.lstatSync(givenPath).isDirectory()) {
-            const filesInDirectory = fs
-                .readdirSync(givenPath)
-                .map((file) => path.join(givenPath, file))
-                .filter((filePath) => fs.lstatSync(filePath).isFile());
-            filesToProcess.push(...filesInDirectory);
-        } else if (fs.lstatSync(givenPath).isFile()) {
-            filesToProcess.push(givenPath);
-        } else {
+        try {
+            if (fs.lstatSync(givenPath).isDirectory()) {
+                const filesInDirectory = fs
+                    .readdirSync(givenPath)
+                    .map((file) => path.join(givenPath, file))
+                    .filter((filePath) => fs.lstatSync(filePath).isFile());
+                filesToProcess.push(...filesInDirectory);
+            } else if (fs.lstatSync(givenPath).isFile()) {
+                filesToProcess.push(givenPath);
+            }
+        } catch {
             throw new Error(`Invalid path: ${givenPath}`);
         }
     }
