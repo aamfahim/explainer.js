@@ -1,4 +1,5 @@
 import { describe, test, expect, beforeEach, afterEach } from '@jest/globals';
+import path from 'path';
 import mock from 'mock-fs';
 import FilePathResolver from '../util/FilePathResolver.js';
 
@@ -45,7 +46,10 @@ describe('FilePathResolver with mocked file system', () => {
 
     test('should resolve file paths from directories', () => {
         const result = FilePathResolver(['dir']);
-        expect(result).toEqual(['dir\\file1.txt', 'dir\\file2.txt']);
+        expect(result).toEqual([
+            path.join('dir', 'file1.txt'),
+            path.join('dir', 'file2.txt')
+        ]);
     });
 
     test('should resolve file paths from files', () => {
@@ -57,8 +61,8 @@ describe('FilePathResolver with mocked file system', () => {
         const result = FilePathResolver(['file1.txt', 'dir']);
         expect(result).toEqual([
             'file1.txt',
-            'dir\\file1.txt',
-            'dir\\file2.txt'
+            path.join('dir', 'file1.txt'),
+            path.join('dir', 'file2.txt')
         ]);
     });
 });
