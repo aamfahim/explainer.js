@@ -5,10 +5,9 @@
     "main": "index.js",
     "type": "module",
     "scripts": {
-        "jest": "node --experimental-vm-modules node_modules/jest/bin/jest.js -c jest.config.mjs",
-        "test": "npm run jest --",
-        "test:watch": "npm run jest --watch --",
-        "coverage": "npm run jest --collectCoverage --",
+        "test": "node --experimental-vm-modules --no-warnings node_modules/jest/bin/jest.js -c jest.config.mjs",
+        "test:watch": "node --experimental-vm-modules --no-warnings node_modules/jest/bin/jest.js -c jest.config.mjs --watch",
+        "coverage": "node --experimental-vm-modules --no-warnings node_modules/jest/bin/jest.js -c jest.config.mjs --collectCoverage",
         "prettier": "prettier --write .",
         "prettier:check": "prettier --check .",
         "prettier:file": "prettier --write --",
