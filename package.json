@@ -5,7 +5,9 @@
     "main": "index.js",
     "type": "module",
     "scripts": {
-        "test": "npm run test",
+        "test": "jest --",
+        "test:watch": "jest --watch --",
+        "coverage": "jest --collectCoverage --",
         "prettier": "prettier --write .",
         "prettier:check": "prettier --check .",
         "prettier:file": "prettier --write --",
