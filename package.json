@@ -5,9 +5,10 @@
     "main": "index.js",
     "type": "module",
     "scripts": {
-        "test": "jest --",
-        "test:watch": "jest --watch --",
-        "coverage": "jest --collectCoverage --",
+        "jest": "node --experimental-vm-modules node_modules/jest/bin/jest.js -c jest.config.mjs",
+        "test": "npm run jest --",
+        "test:watch": "npm run jest --watch --",
+        "coverage": "npm run jest --collectCoverage --",
         "prettier": "prettier --write .",
         "prettier:check": "prettier --check .",
         "prettier:file": "prettier --write --",
@@ -31,7 +32,9 @@
     },
     "homepage": "https://github.com/aamfahim/explainer.js#readme",
     "dependencies": {
+        "@babel/core": "^7.26.0",
         "@ltd/j-toml": "^1.38.0",
+        "babel-jest": "^29.7.0",
         "commander": "^12.1.0",
         "dotenv": "^16.4.5",
         "groq-sdk": "^0.7.0"
