@@ -6,7 +6,7 @@
  * @throws {Error} - If the temperature value is not a number between 0 and 2.
  */
 const TemperatureChecker = (temp) => {
-    if (isNaN(temp) || temp < 0 || temp > 2) {
+    if (typeof temp !== 'number' || isNaN(temp) || temp < 0 || temp > 2) {
         throw new Error('Temperature should be a number between 0 and 2');
     }
     return temp;
