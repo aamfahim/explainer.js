@@ -99,4 +99,9 @@ program
     });
 
 program.showHelpAfterError();
-program.parse(process.argv);
+
+if (import.meta.url === `file://${process.argv[1]}`) {
+    program.parse(process.argv);
+}
+
+export default program;

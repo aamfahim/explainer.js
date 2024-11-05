@@ -1,6 +1,6 @@
 # Contributing to Explainer.js
 
-Thank you for taking your time to contribute! Before filing an issue check preexisting [issues](https://github.com/aamfahim/explainer.js/issues) to ensure there's no duplication. If you would like to work on an issue, leave a comment.
+Thank you for taking your time to contribute! Before filing an issue check preexisting [issues](https://github.com/aamfahim/explainer.js/issues) to ensure there's no duplication. If you would like to work on an issue, leave a comment. Also you should add tests to you PR(if applicable) to cover gaps in the overall testing system.
 
 ## Get Started
 
@@ -85,3 +85,45 @@ Thank you for taking your time to contribute! Before filing an issue check preex
     ```
 
 There is a pre-commit hook that will automatically run prettier and linter on the staged files as well.
+
+### Running Tests
+
+1. **Run All Tests**
+
+    Runs all Jest tests in the project, including unit and end-to-end tests.
+
+    ```bash
+    npm run test
+    ```
+
+2. **Run Tests in Watch Mode**
+
+    Runs tests in watch mode to automatically rerun tests when changes are detected.
+
+    ```bash
+    npm run test:watch
+    ```
+
+3. **Run Tests with Coverage Report**
+
+    Runs tests and generates a coverage report.
+
+    ```bash
+    npm run coverage
+    ```
+
+4. **Run a Specific Test**
+
+    To run a specific test file, use the following command and replace the `TomlChecker` with the test file name.
+
+    ```bash
+    npm run test TomlChecker
+    ```
+
+    ```bash
+    npm run test:watch TomlChecker
+    ```
+
+    ```bash
+    npm run coverage TomlChecker
+    ```
