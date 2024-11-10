@@ -62,7 +62,7 @@ describe('CLI End-to-End Test', () => {
         consoleLogSpy.mockRestore();
     });
 
-    test('should process the input file and capture the actual HTTP response', async () => {
+    test('should process the input file, use the mock HTTP response and exit with 0', async () => {
         process.argv = ['node', 'index.js', 'examples/bubble_sort.js'];
         await program.parseAsync(process.argv);
 
