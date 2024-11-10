@@ -74,4 +74,10 @@ describe('CLI End-to-End Test', () => {
         );
         expect(processExitSpy).toHaveBeenCalledWith(0);
     });
+
+    test('should exit with 1 when provided with incorrect arguments', async () => {
+        process.argv = ['node', 'index.js', 'examples/bubble_sort.js', '-t', 5];
+        await program.parseAsync(process.argv);
+        expect(processExitSpy).toHaveBeenCalledWith(1);
+    });
 });
