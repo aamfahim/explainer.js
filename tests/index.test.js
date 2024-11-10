@@ -63,7 +63,13 @@ describe('CLI End-to-End Test', () => {
     });
 
     test('should process the input file, use the mock HTTP response and exit with 0', async () => {
-        process.argv = ['node', 'index.js', 'examples/bubble_sort.js'];
+        process.argv = [
+            'node',
+            'index.js',
+            'examples/bubble_sort.js',
+            '-a',
+            'test-api-key'
+        ];
         await program.parseAsync(process.argv);
 
         expect(consoleLogSpy).toHaveBeenCalledWith(
@@ -76,7 +82,15 @@ describe('CLI End-to-End Test', () => {
     });
 
     test('should exit with 1 when provided with incorrect arguments', async () => {
-        process.argv = ['node', 'index.js', 'examples/bubble_sort.js', '-t', 5];
+        process.argv = [
+            'node',
+            'index.js',
+            'examples/bubble_sort.js',
+            '-a',
+            'test-api-key',
+            '-t',
+            5
+        ];
         await program.parseAsync(process.argv);
         expect(processExitSpy).toHaveBeenCalledWith(1);
     });
