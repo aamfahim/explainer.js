@@ -62,8 +62,14 @@ describe('CLI End-to-End Test', () => {
         consoleLogSpy.mockRestore();
     });
 
-    test('should process the input file and capture the actual HTTP response', async () => {
-        process.argv = ['node', 'index.js', 'examples/bubble_sort.js'];
+    test('should process the input file, use the mock HTTP response and exit with 0', async () => {
+        process.argv = [
+            'node',
+            'index.js',
+            'examples/bubble_sort.js',
+            '-a',
+            'test-api-key'
+        ];
         await program.parseAsync(process.argv);
 
         expect(consoleLogSpy).toHaveBeenCalledWith(
@@ -73,5 +79,19 @@ describe('CLI End-to-End Test', () => {
             expect.stringContaining('Mock response')
         );
         expect(processExitSpy).toHaveBeenCalledWith(0);
+    });
+
+    test('should exit with 1 when provided with incorrect arguments', async () => {
+        process.argv = [
+            'node',
+            'index.js',
+            'examples/bubble_sort.js',
+            '-a',
+            'test-api-key',
+            '-t',
+            5
+        ];
+        await program.parseAsync(process.argv);
+        expect(processExitSpy).toHaveBeenCalledWith(1);
     });
 });
