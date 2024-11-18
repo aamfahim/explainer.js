@@ -1,3 +1,4 @@
+#!/usr/bin/env node
 import fs from 'fs';
 import 'dotenv/config';
 import { Command, Option } from 'commander';
@@ -100,7 +101,7 @@ program
 
 program.showHelpAfterError();
 
-if (import.meta.url === `file://${process.argv[1]}`) {
+if (process.env.NODE_ENV !== 'test') {
     program.parse(process.argv);
 }
 
