@@ -83,31 +83,31 @@ You can use the CLI to process a file and either print the output to the console
 You can run this following command to get information regarding the tool in the terminal.
 
 ```bash
-node index.js -h
+explainer -h
 ```
 
 \
 If you prefer to do it in the terminal:
 
 ```bash
-node index.js -a <your-api-key> -b <base-url> -m <model-name> -o <output-file> -t <number> <file-path>
+explainer -a <your-api-key> -b <base-url> -m <model-name> -o <output-file> -t <number> <file-path>
 ```
 
 ```bash
-node index.js ---api-key <your-api-key> -baseURL <base-url> --model <model-name> --output <output-file> ----temperature <number> <file-path>
+explainer ---api-key <your-api-key> -baseURL <base-url> --model <model-name> --output <output-file> ----temperature <number> <file-path>
 ```
 
 \
 Or if you have your API_KEY defined in `.env` you can just run the following:
 
 ```bash
-node index.js examples/bubble_sort.js
+explainer examples/bubble_sort.js
 ```
 
 or
 
 ```bash
-node index.js examples/bubble_sort.js examples/selection_sort.js
+explainer examples/bubble_sort.js examples/selection_sort.js
 ```
 
 ## TOML Configuration
