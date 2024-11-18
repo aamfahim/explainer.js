@@ -4,7 +4,7 @@ CLI tool to process files and output the code blocks along with explanation, usi
 
 Built using [Commander.js](https://www.npmjs.com/package/commander) and [Groq SDK](https://console.groq.com/docs/libraries)!
 
-![render1726611915069](https://github.com/user-attachments/assets/b6b8545e-940b-4ca2-b275-699ab363ffcb)
+![Demo](https://github.com/user-attachments/assets/3ba2bdcb-a5a9-4b5a-bca2-d773a7dc75d8)
 
 ## Table of Contents
 
@@ -39,27 +39,9 @@ If you are going to be defining custom Base URL and/or Model refer to [Groq Docu
 
 ## Installation
 
-1. Clone the repository.
-
-   ```bash
-   git clone <repository-url>
-   ```
-
-   ```bash
-   cd <repository-directory>
-   ```
-
-2. Install dependencies.
-
-   ```bash
-   npm install
-   ```
-
-3. Set up your `.env` file with your API key and base URL.
-
-   ```.env
-   API_KEY=your-api-key
-   ```
+```bash
+  npm install -g explainer
+```
 
 ## Options
 
@@ -83,31 +65,31 @@ You can use the CLI to process a file and either print the output to the console
 You can run this following command to get information regarding the tool in the terminal.
 
 ```bash
-node index.js -h
+explainer -h
 ```
 
 \
 If you prefer to do it in the terminal:
 
 ```bash
-node index.js -a <your-api-key> -b <base-url> -m <model-name> -o <output-file> -t <number> <file-path>
+explainer -a <your-api-key> -b <base-url> -m <model-name> -o <output-file> -t <number> <file-path>
 ```
 
 ```bash
-node index.js ---api-key <your-api-key> -baseURL <base-url> --model <model-name> --output <output-file> ----temperature <number> <file-path>
+explainer ---api-key <your-api-key> -baseURL <base-url> --model <model-name> --output <output-file> ----temperature <number> <file-path>
 ```
 
 \
 Or if you have your API_KEY defined in `.env` you can just run the following:
 
 ```bash
-node index.js examples/bubble_sort.js
+explainer examples/bubble_sort.js
 ```
 
 or
 
 ```bash
-node index.js examples/bubble_sort.js examples/selection_sort.js
+explainer examples/bubble_sort.js examples/selection_sort.js
 ```
 
 ## TOML Configuration
