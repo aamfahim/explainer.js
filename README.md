@@ -4,7 +4,8 @@ CLI tool to process files and output the code blocks along with explanation, usi
 
 Built using [Commander.js](https://www.npmjs.com/package/commander) and [Groq SDK](https://console.groq.com/docs/libraries)!
 
-![render1726611915069](https://github.com/user-attachments/assets/b6b8545e-940b-4ca2-b275-699ab363ffcb)
+![Demo](https://github.com/user-attachments/assets/3ba2bdcb-a5a9-4b5a-bca2-d773a7dc75d8)
+
 
 ## Table of Contents
 
