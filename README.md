@@ -6,7 +6,6 @@ Built using [Commander.js](https://www.npmjs.com/package/commander) and [Groq SD
 
 ![Demo](https://github.com/user-attachments/assets/3ba2bdcb-a5a9-4b5a-bca2-d773a7dc75d8)
 
-
 ## Table of Contents
 
 1. [Features](#features)
