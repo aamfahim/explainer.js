@@ -40,7 +40,7 @@ If you are going to be defining custom Base URL and/or Model refer to [Groq Docu
 ## Installation
 
 ```bash
-  npm install -g explainer
+  npm install -g explainer.js
 ```
 
 ## Options
