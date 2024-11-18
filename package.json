@@ -1,6 +1,6 @@
 {
     "name": "explainer.js",
-    "version": "0.2.0",
+    "version": "0.3.0",
     "description": "CLI tool to process files and output the code blocks along with explanation",
     "main": "index.js",
     "type": "module",
