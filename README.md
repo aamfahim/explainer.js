@@ -39,27 +39,9 @@ If you are going to be defining custom Base URL and/or Model refer to [Groq Docu
 
 ## Installation
 
-1. Clone the repository.
-
-   ```bash
-   git clone <repository-url>
-   ```
-
-   ```bash
-   cd <repository-directory>
-   ```
-
-2. Install dependencies.
-
-   ```bash
-   npm install
-   ```
-
-3. Set up your `.env` file with your API key and base URL.
-
-   ```.env
-   API_KEY=your-api-key
-   ```
+```bash
+  npm install -g explainer
+```
 
 ## Options
 
