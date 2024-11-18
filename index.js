@@ -1,5 +1,4 @@
 #!/usr/bin/env node
-import fs from 'fs';
 import 'dotenv/config';
 import { Command, Option } from 'commander';
 import GroqInstance from './util/GroqInstance.js';
@@ -9,8 +8,15 @@ import FilePathResolver from './util/FilePathResolver.js';
 import TomlChecker from './util/TomlChecker.js';
 import ExtractOptions from './util/ExtractOptions.js';
 import ResponsePresenter from './util/ResponsePresenter.js';
+import { fileURLToPath } from 'url';
+import { dirname, resolve } from 'path';
+import { readFileSync } from 'fs';
 
-const packageJSON = JSON.parse(fs.readFileSync('./package.json'));
+const __filename = fileURLToPath(import.meta.url);
+const __dirname = dirname(__filename);
+const packageJSONPath = resolve(__dirname, './package.json');
+const packageJSON = JSON.parse(readFileSync(packageJSONPath, 'utf-8'));
+
 const program = new Command();
 
 program
